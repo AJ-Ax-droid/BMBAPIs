@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYBankingAPI", "MYBankingAPI.csproj", "{AF7985F5-E3EF-498B-83CD-9B143035157A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingWebAPI.BLL", "..\BankingAPI.BLL\BankingWebAPI.BLL\BankingWebAPI.BLL.csproj", "{C9805288-4751-404F-B459-1F1EC4B33FC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingWebAPI.DAL", "..\BankingWebAPI.DAL\BankingWebAPI.DAL.csproj", "{643ADD1B-8C76-48DB-8306-83C22494558D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF7985F5-E3EF-498B-83CD-9B143035157A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF7985F5-E3EF-498B-83CD-9B143035157A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF7985F5-E3EF-498B-83CD-9B143035157A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF7985F5-E3EF-498B-83CD-9B143035157A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9805288-4751-404F-B459-1F1EC4B33FC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9805288-4751-404F-B459-1F1EC4B33FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9805288-4751-404F-B459-1F1EC4B33FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9805288-4751-404F-B459-1F1EC4B33FC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{643ADD1B-8C76-48DB-8306-83C22494558D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{643ADD1B-8C76-48DB-8306-83C22494558D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{643ADD1B-8C76-48DB-8306-83C22494558D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{643ADD1B-8C76-48DB-8306-83C22494558D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
