@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs
+/BankingAPI.BLL/BankingWebAPI.BLL/obj/Release/net8.0
+/BankingAPI.BLL/BankingWebAPI.BLL/obj/BankingWebAPI.BLL.csproj.nuget.dgspec.json
+/BankingAPI.BLL/BankingWebAPI.BLL/obj/project.assets.json
