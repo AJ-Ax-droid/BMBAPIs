@@ -21,10 +21,14 @@ builder.Services.AddDbContext<BankingDbContext>(options =>
 //Add Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserLoginRepository, UserLoginRepository>();
+builder.Services.AddScoped<IUserAccountRepository, UserAccountRepository>();
 
 //Add Service
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserLoginService, UserLoginService>();
+builder.Services.AddScoped<IUserAccountService, UserAccountService>();
+
+// Set the port from environment variable or default to 5000
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
 builder.WebHost.UseUrls($"http://*:{port}");
 

@@ -32,7 +32,6 @@ public partial class User
 
     //public virtual UserAccountDetail UserAccountDetais { get; set; }
 
-    
     //public virtual UserLoginDetails? UserLoginDetails { get; set; }
 
 
