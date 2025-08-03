@@ -22,11 +22,13 @@ builder.Services.AddDbContext<BankingDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserLoginRepository, UserLoginRepository>();
 builder.Services.AddScoped<IUserAccountRepository, UserAccountRepository>();
+builder.Services.AddScoped<ITransactionDetailRepository, TransactionDetailsRepository>();
 
 //Add Service
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserLoginService, UserLoginService>();
 builder.Services.AddScoped<IUserAccountService, UserAccountService>();
+builder.Services.AddScoped<ITransactionDetailService, TransactionDetailsService>();
 
 // Set the port from environment variable or default to 5000
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";

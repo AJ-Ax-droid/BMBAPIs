@@ -14,10 +14,11 @@ public partial class TransactionDetail
     public string TransactionID { get; set; } = null!;
 
     public string TransactionType { get; set; } = null!;
+    public decimal PreviousAmmount { get; set; }// Amount before Transactions
 
-    public decimal AmountTrasacted { get; set; }
+    public decimal AmountTrasacted { get; set; } // Amount to be Transacted
 
-    public long ClearBalance { get; set; }
+    public long ClearBalance { get; set; } // Balance after Transactions
 
     public string TransactionStatus { get; set; } = null!;
 
