@@ -12,6 +12,7 @@ namespace BankingWebAPI.BLL.Interface
     {
         Task<IEnumerable<TransactionDetail>> GetAllTransactionDetailsByAccountNumberRepositoryAsync(string accountNo);
         Task<Boolean> MakeCreditTransactioninAccountRepositoryAsync(MakeTransaction makeTransaction);
+        Task<APIResponseHandler<Boolean>> InsertTransactiondata(TransferBalance transactionDetail);
 
     }
 }

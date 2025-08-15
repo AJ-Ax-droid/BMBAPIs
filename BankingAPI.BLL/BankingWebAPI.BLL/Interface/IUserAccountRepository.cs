@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankingWebAPI.BLL.Interface
-{
+namespace BankingWebAPI.BLL.Interface;
+
     public interface IUserAccountRepository
     {
         Task<UserAccountDetail> GetUSerAccountDetailsByUserIDRepositoryAsync(int userID);
-    }
+        Task <APIResponseHandler<UserAccountDetail>> GetUserAccountDetailsByAccountNoRepositoryAsync(string accountNo);
+        Task <APIResponseHandler<long>> GetUserAccountBalanceByAccountNoAndUserIdRepositoryAsync(int userID,string accountNo);
 }

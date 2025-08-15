@@ -12,9 +12,13 @@ namespace MYBankingAPI.Controllers
     public class TransactionDetailController : Controller
     {
         private readonly ITransactionDetailService _transactionDetailService;
-        public TransactionDetailController(ITransactionDetailService transactionDetailService)
+        private readonly ILogger<TransactionDetailController> _logger;
+        private readonly IMakePaymentService _makePaymentService;
+        public TransactionDetailController(ITransactionDetailService transactionDetailService, ILogger<TransactionDetailController> logger, IMakePaymentService makePaymentService)
         {
             _transactionDetailService = transactionDetailService;
+            _logger = logger;
+            _makePaymentService = makePaymentService;
         }
         [HttpGet("GetAllTransactionDetailsByAccountNumber/{accountNo}")]
         public async Task<IActionResult> GetAllTransactionDetailsByAccountNumber()
@@ -37,7 +41,6 @@ namespace MYBankingAPI.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred while fetching transaction details: {ex.Message}");
             }
-
 
         }
 
@@ -67,5 +70,13 @@ namespace MYBankingAPI.Controllers
 
 
         }
+        [HttpPost("TransferAmmount")]
+     public async Task<IActionResult> TransferAmount(bool isReceiverAccountVerifiedBMB, string ReceiverAccountNo, string ReceiverAccountHolderName, int SenderUserID, string SenderAccountNo, string SenderAccoundHolderName, long AmountToSend)
+        {
+            var result =await _makePaymentService.MakePaymentToAnotherAccountServiceAsync(isReceiverAccountVerifiedBMB, ReceiverAccountNo, ReceiverAccountHolderName, SenderUserID, SenderAccountNo, SenderAccoundHolderName, AmountToSend);
+            return Ok(result);
+
+        }
+    
     }
 }

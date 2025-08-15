@@ -61,5 +61,38 @@ namespace BankingWebAPI.BLL.Repository
                 throw new Exception("some error occured" + ex);
             }
         }
+
+        public Task<APIResponseHandler<User>> GetUserDetailsByUserIDAsync(int userId)
+        {
+            try
+            {
+                var user = _context.Users.FirstOrDefaultAsync(u => u.UserID == userId);
+                if (user == null)
+                {
+                    return Task.FromResult(new APIResponseHandler<User>
+                    {
+                        isSuccess = false,
+                        Message = "User not found.",
+                        Data = null
+                    });
+                }
+                return Task.FromResult(new APIResponseHandler<User>
+                {
+                    isSuccess = true,
+                    Message = "User details fetched successfully.",
+                    Data = user.Result
+                });
+            }
+            catch (Exception ex)
+            {
+                return Task.FromResult(new APIResponseHandler<User>
+                {
+                    isSuccess = false,
+                    Message = "An error occurred while fetching user details. Message=" + ex.Message,
+                    Data = null
+                });
+            }
+
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace BankingWebAPI.BLL.Interface
     {
         Task<IEnumerable<User>> GetAllUsersAsync();
         Task<GetUserDetails> CreateUserAccountAsync(RegisterNewUsercs user,string AccountNo);
+        Task<APIResponseHandler<User>> GetUserDetailsByUserIDAsync(int userId);
     }
 
 }

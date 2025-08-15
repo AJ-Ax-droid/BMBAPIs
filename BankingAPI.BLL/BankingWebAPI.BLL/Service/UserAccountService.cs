@@ -15,6 +15,13 @@ namespace BankingWebAPI.BLL.Service
         {
             _userAccountRepository = userAccountRepository;
         }
+
+        public Task<APIResponseHandler<long>> GetUserAccountBalanceByAccountNoAndUserIdServiceAsync(int userID, string AccountNo)
+        {
+            return _userAccountRepository.GetUserAccountBalanceByAccountNoAndUserIdRepositoryAsync(userID, AccountNo);
+            
+        }
+
         public async Task<UserAccountDetail> GetUSerAccountDetailsByUserIDServiceAsync(int userID)
         {
             // Call the repository method to get user account details by user ID

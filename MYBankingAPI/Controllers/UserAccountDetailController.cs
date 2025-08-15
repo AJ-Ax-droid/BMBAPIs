@@ -37,4 +37,34 @@ namespace MYBankingAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred while fetching user account details: {ex.Message}");
             }
         }
-    }}
+
+        [HttpGet("GetUserAccountBalanceByAccountNoAndUserId")]
+        public async Task<IActionResult> GetUserAccountBalanceByAccountNoAndUserIdAsync(int userID, string accountNo) {
+            try
+            {
+                if (userID <= 0 || string.IsNullOrEmpty(accountNo))
+                {
+                    return BadRequest("Invalid user ID or account number.");
+                }
+                var accountBalance = await _userAccountService.GetUserAccountBalanceByAccountNoAndUserIdServiceAsync(userID, accountNo);
+                return Ok(new
+                {
+                    isSuccess = accountBalance.isSuccess,
+                    Message = accountBalance.Message,
+                    Data = accountBalance.Data
+                });
+
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred while fetching user account balance: {ex.Message}");
+
+            }
+        
+        
+        }
+
+
+    }
+}

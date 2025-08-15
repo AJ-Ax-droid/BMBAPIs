@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using BankingWebAPI.BLL.Interface;
 using BankingWebAPI.BLL.Service;
 using BankingWebAPI.BLL.Repository;
+using BankingWebAPI.BLL.Service.PayService;
+using BankingWebAPI.BLL.Repository.HelperMethods;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +31,11 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserLoginService, UserLoginService>();
 builder.Services.AddScoped<IUserAccountService, UserAccountService>();
 builder.Services.AddScoped<ITransactionDetailService, TransactionDetailsService>();
+builder.Services.AddScoped<IMakePaymentService, MakePaymentService>();
+
+// Add DI
+builder.Services.AddScoped<AccountsHelperRepo>();
+
 
 // Set the port from environment variable or default to 5000
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
