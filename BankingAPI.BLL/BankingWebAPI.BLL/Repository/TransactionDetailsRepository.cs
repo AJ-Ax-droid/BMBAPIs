@@ -169,7 +169,7 @@ namespace BankingWebAPI.BLL.Repository
                 return new APIResponseHandler<Boolean>
                 {
                     isSuccess = true,
-                    Message = "Transaction data inserted successfully.",
+                    Message = "Amount Transfer Succefully to Account NO."+ transactionDetail.receiverAccountNo,
                     Data = true
                 };
 
