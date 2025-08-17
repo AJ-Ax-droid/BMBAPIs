@@ -113,7 +113,7 @@ namespace BankingWebAPI.BLL.Repository
             
         }
 
-        public async Task<UserAccountDetail> GetUSerAccountDetailsByUserIDRepositoryAsync(int userID)
+        public async Task<List<UserAccountDetail>> GetUSerAccountDetailsByUserIDRepositoryAsync(int userID)
         {
             try
             {
@@ -123,8 +123,10 @@ namespace BankingWebAPI.BLL.Repository
                     throw new ArgumentException("Invalid user ID.");
                 }
 
-                var userAccountDetails = await _context.UserAccountDetails
-                .FirstOrDefaultAsync(ua => ua.UserID == userID);
+                //var userAccountDetails = await _context.UserAccountDetails
+                //.ToListAsync(ua => ua.UserID == userID);
+                var userAccountDetails =await _context.UserAccountDetails.Where(ua => ua.UserID == userID)
+                    .ToListAsync();
                 if (userAccountDetails == null)
                 {
                     throw new KeyNotFoundException($"User account details not found for user ID: {userID}");

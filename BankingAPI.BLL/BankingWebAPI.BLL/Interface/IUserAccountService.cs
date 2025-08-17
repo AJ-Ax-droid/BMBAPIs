@@ -10,9 +10,10 @@ namespace BankingWebAPI.BLL.Interface
 {
     public interface IUserAccountService
     {
-        
-        Task<UserAccountDetail> GetUSerAccountDetailsByUserIDServiceAsync(int userID);
+
+        Task<List<UserAccountDetail>> GetUSerAccountDetailsByUserIDServiceAsync(int userID);
         Task<APIResponseHandler<long>> GetUserAccountBalanceByAccountNoAndUserIdServiceAsync(int userID, string AccountNo);
+        Task<APIResponseHandler<bool>> IsAccountExistinBMB(string AccountNo);
 
 
     }

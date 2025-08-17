@@ -64,7 +64,28 @@ namespace MYBankingAPI.Controllers
         
         
         }
-
+        [HttpGet("IsAccountExistinBMB")]
+        public async Task<IActionResult> IsAccountExistinBMBAsync(string accountNo)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(accountNo))
+                {
+                    return BadRequest("Invalid account number.");
+                }
+                var isAccountExists = await _userAccountService.IsAccountExistinBMB(accountNo);
+                return Ok(new
+                {
+                    isSuccess = isAccountExists.isSuccess,
+                    Message = isAccountExists.Message,
+                    Data = isAccountExists.Data
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred while checking account existence: {ex.Message}");
+            }
+        }
 
     }
 }
