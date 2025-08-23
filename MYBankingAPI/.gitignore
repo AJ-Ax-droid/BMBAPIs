@@ -795,3 +795,5 @@ FodyWeavers.xsd
 /BankingAPI.BLL/BankingWebAPI.BLL/obj/
 /BankingAPI.BLL/BankingWebAPI.DAL/bin/
 /BankingAPI.BLL/BankingWebAPI.DAL/obj/
+[Bb]in/
+[Oo]bj/
