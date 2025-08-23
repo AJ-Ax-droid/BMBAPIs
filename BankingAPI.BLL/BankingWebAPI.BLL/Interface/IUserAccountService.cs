@@ -12,7 +12,7 @@ namespace BankingWebAPI.BLL.Interface
     {
 
         Task<List<UserAccountDetail>> GetUSerAccountDetailsByUserIDServiceAsync(int userID);
-        Task<APIResponseHandler<long>> GetUserAccountBalanceByAccountNoAndUserIdServiceAsync(int userID, string AccountNo);
+        Task<APIResponseHandler<decimal>> GetUserAccountBalanceByAccountNoAndUserIdServiceAsync(int userID, string AccountNo);
         Task<APIResponseHandler<bool>> IsAccountExistinBMB(string AccountNo);
         Task<APIResponseHandler<UserAccountDetail>> CreateUserAccountDetailsServiceAsync(UserAccountDetail userAccountDetail);
 

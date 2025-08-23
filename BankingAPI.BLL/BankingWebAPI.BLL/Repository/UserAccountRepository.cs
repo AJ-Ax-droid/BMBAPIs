@@ -61,13 +61,13 @@ namespace BankingWebAPI.BLL.Repository
 
         }
 
-        public async Task<APIResponseHandler<long>> GetUserAccountBalanceByAccountNoAndUserIdRepositoryAsync(int userID, string accountNo)
+        public async Task<APIResponseHandler<decimal>> GetUserAccountBalanceByAccountNoAndUserIdRepositoryAsync(int userID, string accountNo)
         {
             try
             {
                 if (userID <= 0 || string.IsNullOrEmpty(accountNo))
                 {
-                    return (new APIResponseHandler<long>
+                    return (new APIResponseHandler<decimal>
                     {
                         isSuccess = false,
                         Message = "Invalid user ID or account number.",
@@ -80,14 +80,14 @@ namespace BankingWebAPI.BLL.Repository
                     .FirstOrDefaultAsync();
                 if ( accountbalance == null)
                     {
-                    return (new APIResponseHandler<long>
+                    return (new APIResponseHandler<decimal>
                     {
                         isSuccess = false,
                         Message = $"No transactions found for account number: {accountNo} and user ID: {userID}",
                         Data = 0
                     });
                 }
-                return (new APIResponseHandler<long>
+                return (new APIResponseHandler<decimal>
                 {
                     isSuccess = true,
                     Message = "User account balance fetched successfully.",
@@ -98,7 +98,7 @@ namespace BankingWebAPI.BLL.Repository
             }
             catch (Exception ex)
             {
-                return (new APIResponseHandler<long>
+                return (new APIResponseHandler<decimal>
                 {
                     isSuccess = false,
                     Message = "An error occurred while fetching user account balance. Message=" + ex,

@@ -40,7 +40,7 @@ namespace BankingWebAPI.BLL.Service
 
         }
 
-        public Task<APIResponseHandler<long>> GetUserAccountBalanceByAccountNoAndUserIdServiceAsync(int userID, string AccountNo)
+        public Task<APIResponseHandler<decimal>> GetUserAccountBalanceByAccountNoAndUserIdServiceAsync(int userID, string AccountNo)
         {
             return _userAccountRepository.GetUserAccountBalanceByAccountNoAndUserIdRepositoryAsync(userID, AccountNo);
 

@@ -18,7 +18,7 @@ public partial class TransactionDetail
 
     public decimal AmountTrasacted { get; set; } // Amount to be Transacted
 
-    public long ClearBalance { get; set; } // Balance after Transactions
+    public decimal ClearBalance { get; set; } // Balance after Transactions
 
     public string TransactionStatus { get; set; } = null!;
 
