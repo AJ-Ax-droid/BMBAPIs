@@ -18,6 +18,49 @@ namespace BankingWebAPI.BLL.Repository
             _context = context;
         }
 
+        public Task<APIResponseHandler<UserAccountDetail>> CreateUserAccountDetailsRepositoryAsync(UserAccountDetail userAccountDetail)
+        {
+            if (userAccountDetail == null)
+            {
+                return Task.FromResult(new APIResponseHandler<UserAccountDetail>
+                {
+                    isSuccess = false,
+                    Message = "User account detail cannot be null.",
+                    Data = null
+                });
+            }
+            if (string.IsNullOrEmpty(userAccountDetail.AccountNo))
+            {
+                return Task.FromResult(new APIResponseHandler<UserAccountDetail>
+                {
+                    isSuccess = false,
+                    Message = "Account number cannot be null or empty.",
+                    Data = null
+                });
+            }
+            try
+            {
+                _context.UserAccountDetails.Add(userAccountDetail);
+                _context.SaveChanges();
+                return Task.FromResult(new APIResponseHandler<UserAccountDetail>
+                {
+                    isSuccess = true,
+                    Message = "User account detail created successfully.",
+                    Data = userAccountDetail
+                });
+            }
+            catch (Exception ex)
+            {
+                return Task.FromResult(new APIResponseHandler<UserAccountDetail>
+                {
+                    isSuccess = false,
+                    Message = "An error occurred while creating user account detail. Message=" + ex,
+                    Data = null
+                });
+            }
+
+        }
+
         public async Task<APIResponseHandler<long>> GetUserAccountBalanceByAccountNoAndUserIdRepositoryAsync(int userID, string accountNo)
         {
             try

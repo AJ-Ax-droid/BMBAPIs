@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BankingWebAPI.BLL.helper;
+using BankingWebAPI.DAL.DtoClass;
 
 namespace BankingWebAPI.BLL.Service
 {
@@ -17,6 +19,25 @@ namespace BankingWebAPI.BLL.Service
         {
             _userAccountRepository = userAccountRepository;
             _accountsHelperRepo = accountsHelperRepo;
+        }
+
+        public Task<APIResponseHandler<UserAccountDetail>> CreateUserAccountDetailsServiceAsync(UserAccountDetail userAccountDetail)
+        {
+            if (userAccountDetail == null)
+            {
+                throw new ArgumentNullException(nameof(userAccountDetail), "UserAccountDetail cannot be null");
+            }
+            var GetAccuserdtl = new AccountNo
+            {
+                FirstName = userAccountDetail.FirstName,
+                LastName = userAccountDetail.LastName,
+                PanNo = userAccountDetail.PanNo,
+                Account_Type = userAccountDetail.Account_Type,
+            };
+            string accountNumber = AccountDetail.GetAccountNumber(GetAccuserdtl);
+            userAccountDetail.AccountNo = accountNumber; 
+            return _userAccountRepository.CreateUserAccountDetailsRepositoryAsync(userAccountDetail);
+
         }
 
         public Task<APIResponseHandler<long>> GetUserAccountBalanceByAccountNoAndUserIdServiceAsync(int userID, string AccountNo)

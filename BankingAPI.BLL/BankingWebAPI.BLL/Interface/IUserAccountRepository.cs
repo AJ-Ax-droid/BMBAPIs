@@ -12,4 +12,5 @@ namespace BankingWebAPI.BLL.Interface;
         Task<List<UserAccountDetail>> GetUSerAccountDetailsByUserIDRepositoryAsync(int userID);
         Task <APIResponseHandler<UserAccountDetail>> GetUserAccountDetailsByAccountNoRepositoryAsync(string accountNo);
         Task <APIResponseHandler<long>> GetUserAccountBalanceByAccountNoAndUserIdRepositoryAsync(int userID,string accountNo);
+        Task <APIResponseHandler<UserAccountDetail>> CreateUserAccountDetailsRepositoryAsync(UserAccountDetail userAccountDetail);
 }

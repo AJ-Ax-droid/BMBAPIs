@@ -25,8 +25,7 @@ namespace MYBankingAPI
         }
         //Creaet a new user
         [HttpPost]
-        public
-            async Task<ActionResult<GetUserDetails>> CreateUser(RegisterNewUsercs user)
+        public async Task<ActionResult<GetUserDetails>> CreateUser(RegisterNewUsercs user)
         {
             if (user == null)
             {

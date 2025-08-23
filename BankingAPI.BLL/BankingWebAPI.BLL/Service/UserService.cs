@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using BankingWebAPI.BLL.helper;
 
 namespace BankingWebAPI.BLL.Service
 {
@@ -28,42 +29,19 @@ namespace BankingWebAPI.BLL.Service
             {
                 throw new ArgumentNullException(nameof(user), "User cannot be null");
             }
-            string accountNumber = GetAccountNumber(user);
+           var GetAccuserdtl= new AccountNo
+            {
+                FirstName = user.User.FirstName,
+                LastName = user.User.LastName,
+                PanNo = user.UserAccountDetais.PanNo,
+                Account_Type = user.UserAccountDetais.Account_Type,
+            };
+            string accountNumber = AccountDetail.GetAccountNumber(GetAccuserdtl);
             user.UserAccountDetais.AccountNo = accountNumber;
 
             return await _userRepository.CreateUserAccountAsync(user,accountNumber);
         }
 
-        public string GetAccountNumber(RegisterNewUsercs user)
-        {
-            if (user == null || user.UserAccountDetais == null)
-                throw new ArgumentNullException(nameof(user), "User or UserAccountDetais cannot be null");
-
-            var pan = user.UserAccountDetais.PanNo;
-            var firstName = user.User.FirstName;
-            var lastName = user.User.LastName;
-            var accountType = user.UserAccountDetais.Account_Type;
-
-            // Defensive checks
-            if (string.IsNullOrEmpty(pan) || pan.Length < 2)
-                throw new ArgumentException("PanNo must be at least 2 characters long.");
-            if (string.IsNullOrEmpty(firstName))
-                throw new ArgumentException("FirstName cannot be null or empty.");
-            if (string.IsNullOrEmpty(lastName))
-                throw new ArgumentException("LastName cannot be null or empty.");
-            if (string.IsNullOrEmpty(accountType))
-                throw new ArgumentException("Account_Type cannot be null or empty.");
-
-            string endTwoPan = pan.Length >= 2 ? pan.Substring(pan.Length - 2) : pan;
-            string firstLetterName = firstName.Substring(0, 1).ToUpper();
-            string firstLetterLastName = lastName.Substring(0, 1).ToUpper();
-            string startTwoPan = pan.Substring(0, 2).ToUpper();
-            string firstDigitAccountType = accountType.Substring(0, 1).ToUpper();
-
-            string accountName = $"{endTwoPan}{firstLetterName}MP{firstLetterLastName}{startTwoPan}BMB{firstDigitAccountType}";
-            return accountName;
-        }
-
-
+        
     }
 }

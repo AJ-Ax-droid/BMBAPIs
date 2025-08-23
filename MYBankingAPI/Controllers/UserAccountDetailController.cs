@@ -87,5 +87,27 @@ namespace MYBankingAPI.Controllers
             }
         }
 
+        [HttpPost("CreateUserAccountDetails")]
+        public async Task<IActionResult> CreateUserAccountDetailsAsync(UserAccountDetail userAccountDetail)
+        {
+            if (userAccountDetail == null)
+            {
+                return BadRequest("UserAccountDetail cannot be null");
+            }
+            try
+            {
+                var createdAccountDetail = await _userAccountService.CreateUserAccountDetailsServiceAsync(userAccountDetail);
+                if (createdAccountDetail == null || !createdAccountDetail.isSuccess)
+                {
+                    return BadRequest("Failed to create user account details");
+                }
+                return Ok(createdAccountDetail);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred while creating user account details: {ex.Message}");
+            }
+        }
+
     }
 }

@@ -16,6 +16,10 @@ public partial class UserAccountDetail
 
     public string Account_Type { get; set; } = null!;
     public DateTime AccountCreatedOn { get; set; }
+    [NotMapped]
+    public string FirstName { get; set; } = null!;
+    [NotMapped]
+    public string LastName { get; set; } = null!;
 
 
 }
