@@ -791,3 +791,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/BankingAPI.BLL/BankingWebAPI.BLL/bin/
+/BankingAPI.BLL/BankingWebAPI.BLL/obj/
+/BankingAPI.BLL/BankingWebAPI.DAL/bin/
+/BankingAPI.BLL/BankingWebAPI.DAL/obj/

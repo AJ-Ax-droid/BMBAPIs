@@ -444,3 +444,4 @@ FodyWeavers.xsd
 /BankingAPI.BLL/BankingWebAPI.BLL/obj/project.nuget.cache
 /BankingWebAPI.DAL/obj/
 /BankingAPI.BLL/BankingWebAPI.BLL/bin/
+/BankingAPI.BLL/BankingWebAPI.BLL/bin/Debug/net8.0/BankingWebAPI.BLL.deps.json
