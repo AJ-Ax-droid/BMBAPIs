@@ -25,9 +25,9 @@ namespace BankingWebAPI.BLL.Service.PayService
             _userAccountRepository = userAccountRepository;
             _userRepository = userRepository;
         }
-        public async Task<APIResponseHandler<bool>> MakePaymentToAnotherAccountServiceAsync(bool isReceiverAccountVerifiedBMB, string ReceiverAccountNo, string ReceiverAccountHolderName, int SenderUserID, string SenderAccountNo, string SenderAccoundHolderName, long AmountToSend)
+        public async Task<APIResponseHandler<bool>> MakePaymentToAnotherAccountServiceAsync(bool isReceiverAccountVerifiedBMB,bool isQRScanned, string ReceiverAccountNo, string ReceiverAccountHolderName, int SenderUserID, string SenderAccountNo, string SenderAccoundHolderName, long AmountToSend)
         {
-            if (isReceiverAccountVerifiedBMB)
+            if (isReceiverAccountVerifiedBMB )
             {
                 //Check if ReceverAccount is exist in the database or not and get the name of that accountholder if it matches or not
                 var isRaccExist = await _accountsHelperRepo.IsAccountExistsAsync(ReceiverAccountNo);
@@ -131,6 +131,72 @@ namespace BankingWebAPI.BLL.Service.PayService
                     Message = transferResult.Message,
                     Data = transferResult.Data
                 });
+            }
+            else if(isQRScanned)
+            {
+                // If the receiver account is verified via QR code, we can proceed with the payment without additional checks
+                var SenderAccountDetails = await _userAccountRepository.GetUserAccountDetailsByAccountNoRepositoryAsync(SenderAccountNo);
+                if (SenderAccountDetails == null || SenderAccountDetails.Data == null)
+                {
+                    return (new APIResponseHandler<bool>
+                    {
+                        isSuccess = false,
+                        Message = "Sender account details not found.",
+                        Data = false
+                    });
+                }
+                var SenderUserDetails = await _userRepository.GetUserDetailsByUserIDAsync(SenderUserID);
+                if (SenderUserDetails == null || SenderUserDetails.Data == null)
+                {
+                    return (new APIResponseHandler<bool>
+                    {
+                        isSuccess = false,
+                        Message = "Sender user details not found.",
+                        Data = false
+                    });
+                }
+                var senderBlnc = _userAccountRepository.GetUserAccountBalanceByAccountNoAndUserIdRepositoryAsync(SenderUserID, SenderAccountNo).Result.Data;
+                if (AmountToSend > senderBlnc)
+                {
+                    return (new APIResponseHandler<bool>
+                    {
+                        isSuccess = false,
+                        Message = "Sender account does not have sufficient balance.",
+                        Data = false
+                    });
+                }
+
+                // Transfer the amount from sender to receiver account
+                var transferResult = await _transactionDetailRepository.InsertTransactiondata(new TransferBalance
+                {
+                    SenderAccountNo = SenderAccountNo,
+                    SenderUserID = SenderUserID,
+                    receiverAccountNo = ReceiverAccountNo,
+                    ReceiverUserID = 0,
+                    ReceiverAccountHolderName = ReceiverAccountHolderName+" By UPI",
+                    AmountToTransfer = AmountToSend,
+                    TransactionType = "Payment",
+                    TransactionBy = SenderUserDetails.Data.FirstName + " " + SenderUserDetails.Data.LastName,
+                    receiverAccountBalance = 0,
+                    senderAccountBalance = senderBlnc
+                });
+                if (transferResult == null || !transferResult.isSuccess)
+                {
+                    return (new APIResponseHandler<bool>
+                    {
+                        isSuccess = false,
+                        Message = "Failed to process the payment.",
+                        Data = false
+                    });
+                }
+                return (new APIResponseHandler<bool>
+                {
+                    isSuccess = transferResult.isSuccess,
+                    Message = transferResult.Message,
+                    Data = transferResult.Data
+                });
+
+
             }
             else
             {

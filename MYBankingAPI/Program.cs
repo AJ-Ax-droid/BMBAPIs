@@ -38,8 +38,8 @@ builder.Services.AddScoped<AccountsHelperRepo>();
 
 
 // Set the port from environment variable or default to 5000
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-builder.WebHost.UseUrls($"http://*:{port}");
+//var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+//builder.WebHost.UseUrls($"http://*:{port}");
 
 
 

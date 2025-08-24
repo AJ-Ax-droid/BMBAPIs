@@ -73,7 +73,7 @@ namespace MYBankingAPI.Controllers
         [HttpPost("TransferAmmount")]
      public async Task<IActionResult> TransferAmount([FromBody] TransferAmountBtoB transferAmountBtoB)
         {
-            var result =await _makePaymentService.MakePaymentToAnotherAccountServiceAsync(transferAmountBtoB.isReceiverAccountVerifiedBMB, transferAmountBtoB.ReceiverAccountNo, transferAmountBtoB.ReceiverAccountHolderName, transferAmountBtoB.SenderUserID, transferAmountBtoB.SenderAccountNo, transferAmountBtoB.SenderAccoundHolderName, transferAmountBtoB.AmountToSend);
+            var result =await _makePaymentService.MakePaymentToAnotherAccountServiceAsync(transferAmountBtoB.isReceiverAccountVerifiedBMB,transferAmountBtoB.isQRCodeScanned, transferAmountBtoB.ReceiverAccountNo, transferAmountBtoB.ReceiverAccountHolderName, transferAmountBtoB.SenderUserID, transferAmountBtoB.SenderAccountNo, transferAmountBtoB.SenderAccoundHolderName, transferAmountBtoB.AmountToSend);
             return Ok(result);
 
         }

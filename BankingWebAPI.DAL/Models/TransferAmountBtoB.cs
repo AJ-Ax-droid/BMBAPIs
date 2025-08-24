@@ -9,6 +9,7 @@ namespace BankingWebAPI.DAL.Models
     public class TransferAmountBtoB
     {
         public bool isReceiverAccountVerifiedBMB { get; set; }
+        public bool isQRCodeScanned { get; set; }
         public string ReceiverAccountNo { get; set; }
         public string ReceiverAccountHolderName { get; set; }
         public int SenderUserID { get; set; }

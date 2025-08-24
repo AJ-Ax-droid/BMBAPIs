@@ -9,7 +9,7 @@ namespace BankingWebAPI.BLL.Interface
 {
     public interface IMakePaymentService
     {
-        public Task<APIResponseHandler<bool>> MakePaymentToAnotherAccountServiceAsync(bool isReceiverAccountVerifiedBMB, string ReceiverAccountNo, string ReceiverAccountHolderName,int SenderUserID, string SenderAccountNo, string SenderAccoundHolderName,long AmountToSend);
+        public Task<APIResponseHandler<bool>> MakePaymentToAnotherAccountServiceAsync(bool isReceiverAccountVerifiedBMB,bool isQRScanned, string ReceiverAccountNo, string ReceiverAccountHolderName,int SenderUserID, string SenderAccountNo, string SenderAccoundHolderName,long AmountToSend);
         
     }
 }

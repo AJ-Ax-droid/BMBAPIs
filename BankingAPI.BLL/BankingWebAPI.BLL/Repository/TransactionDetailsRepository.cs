@@ -143,6 +143,10 @@ namespace BankingWebAPI.BLL.Repository
                         Data = false
                     };
                 }
+                if (transactionDetail.ReceiverUserID!=0)
+                {     
+                
+
                 // Now Make Credit Transaction to Receiver Account
                 var creditTransaction = new TransactionDetail
                 {
@@ -165,6 +169,7 @@ namespace BankingWebAPI.BLL.Repository
                         Message = "Failed to make credit transaction.",
                         Data = false
                     };
+                }
                 }
                 // Save changes to the database
                 await _context.SaveChangesAsync();
