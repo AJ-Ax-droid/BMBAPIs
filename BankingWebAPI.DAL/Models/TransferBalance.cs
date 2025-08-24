@@ -10,13 +10,14 @@ namespace BankingWebAPI.DAL.Models
     {
         public string SenderAccountNo { get; set; }
         public int SenderUserID { get; set; }
+        public decimal senderAccountBalance { get; set; }
         public string receiverAccountNo { get; set; }
         public int ReceiverUserID { get; set; }
+        public string ReceiverAccountHolderName { get; set; }
+        public decimal receiverAccountBalance { get; set; }
         public decimal AmountToTransfer { get; set; }
         public string TransactionType { get; set; } 
         public string TransactionBy { get; set; }
-        public decimal senderAccountBalance { get; set; }
-        public decimal receiverAccountBalance { get; set; }
 
     }
 }

@@ -130,7 +130,8 @@ namespace BankingWebAPI.BLL.Repository
                     TransactionDate = DateTime.UtcNow,
                     ClearBalance = transactionDetail.senderAccountBalance - transactionDetail.AmountToTransfer,
                    PreviousAmmount=transactionDetail.senderAccountBalance,
-                    TransactionStatus = "Success"
+                    TransactionStatus = "Success",
+                    TransactionTo=transactionDetail.ReceiverAccountHolderName,
                 };
                 var result = await _context.TransactionDetails.AddAsync(debitTransaction);
                 if (result == null)
@@ -153,7 +154,8 @@ namespace BankingWebAPI.BLL.Repository
                     TransactionDate = DateTime.UtcNow,
                     ClearBalance = transactionDetail.receiverAccountBalance + transactionDetail.AmountToTransfer,
                     PreviousAmmount=transactionDetail.receiverAccountBalance,
-                    TransactionStatus = "Success"
+                    TransactionStatus = "Success",
+                    TransactionTo = transactionDetail.ReceiverAccountHolderName,
                 };
                 var creditResult = await _context.TransactionDetails.AddAsync(creditTransaction);
                 if (creditResult == null) {

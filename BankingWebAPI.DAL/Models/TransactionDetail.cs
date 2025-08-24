@@ -24,5 +24,6 @@ public partial class TransactionDetail
 
     public DateTime TransactionDate { get; set; }
     public string? TransactionBy { get; set; }
+    public string? TransactionTo { get; set; }
 
-}
+    }

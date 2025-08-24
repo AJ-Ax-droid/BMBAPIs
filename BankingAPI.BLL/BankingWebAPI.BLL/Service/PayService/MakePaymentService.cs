@@ -109,6 +109,7 @@ namespace BankingWebAPI.BLL.Service.PayService
                     SenderUserID = SenderUserID,
                     receiverAccountNo = ReceiverAccountNo,
                     ReceiverUserID = ReceiverAccountdtl.Data.UserID,
+                    ReceiverAccountHolderName= ReceiverAccountHolderName,
                     AmountToTransfer = AmountToSend,
                     TransactionType = "Payment",
                     TransactionBy = SenderUserDetails.Data.FirstName + " " + SenderUserDetails.Data.LastName,
