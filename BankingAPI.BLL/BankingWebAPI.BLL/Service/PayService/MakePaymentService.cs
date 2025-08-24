@@ -60,7 +60,7 @@ namespace BankingWebAPI.BLL.Service.PayService
                         Data = false
                     });
                 }
-                else if (!ReceiverAccountHolderName.Contains(ReceiverUserDetails.Data.FirstName))
+                else if (!(ReceiverUserDetails.Data.FirstName).Contains(ReceiverAccountHolderName))
                 {
                     return (new APIResponseHandler<bool>
                     {
